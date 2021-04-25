@@ -6,7 +6,7 @@ VERSION:="1.0.0"
 
 # REST service location on the host
 PORT:=1234
-URL_BASE:=/v1/lanmon
+URL_BASE:=/v1/arpmon
 
 # The number of goroutines to spawn (use 4 to keep RPi 3 load under 1.0)
 GOROUTINES:=8
