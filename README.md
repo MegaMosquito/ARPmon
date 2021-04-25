@@ -1,7 +1,7 @@
 # ARPmon
 A REST service that monitors the local area network (LAN) using ARP probes.
 
-## Creating the RESR Service:
+## Creating the REST Service:
 
 To start up the REST service, build the container and run it using the steps below.
 
@@ -40,7 +40,7 @@ If you prefer to receive the data in JSON form, you can run:
 make check
 ```
 
-Of course, all of these `make` targets just use `curl` to connect to the REST API provided by this service. Look at the Makefile to see how each of these targets in implements (each is just a single line). Essentially just append "macs", "csv" or "json" to the BASE_URL when you connect to the API to select your prefrred output format.
+Of course, all of these `make` targets just use `curl` to connect to the REST API provided by this service. Look at the Makefile to see how each of these targets in implements (each is just a single line). Essentially just append "macs", "csv" or "json" to the BASE_URL when you connect to the API to select your preferred output format.
 
 ## Notes and limitations
 
@@ -52,11 +52,11 @@ You must configure ARPmon with the Classless Inter-Domain Routing (CIDR) address
 
 ARPmon will scan every IP address from `.1` to `.254` (inclusive) in the subnet identified by the CIDR you provide. It does this by firing off an **ARP Probe** for each of these addresses. An ARP Probe essentially says, "hey, do any of you computers on the LAN have this IP address? If so, please respond with your MAC address so I can communicate with you". Computers on IP LANs must respond to such messages or other computers using IP will be unable to communicate with them through the lower layers of the protocol stack. That makes this a good technique to find all the hosts on your LAN, at least in principle.
 
-Having said that, ARP is a tricky business, and the underlying `arping` Go library has some limitations as I suggested above. If I understand what I am seeing from its output, I think `arping` does not handle **ARP Proxing** correctly. As a result, some hosts respond as proxies for others, responding to my ARP Probes with something like, "yeah, I know who has that IP address, it's in my ARP table, so I'll share that with you on their behalf." The library I am using here returns those responses with the MAC address of the proxy responder. As a result, I see a some MAC addresses showing up mutliple times.
+Having said that, ARP is a tricky business, and the underlying `arping` Go library has some limitations as I suggested above. If I understand what I am seeing from its output, I think `arping` does not handle **ARP Proxing** correctly. As a result, some hosts respond as proxies for others, responding to my ARP Probes with something like, "yeah, I know who has that IP address, it's in my ARP table, so I'll share that with you on their behalf." The library I am using here returns those responses with the MAC address of the proxy responder. As a result, I see a some MAC addresses showing up multiple times.
 
 I may be able to improve on this, but it's an improvement over my older code so it's "good enough" for my use case as is.
 
-If you have feedback, or wish to contribute improvements, PRs re welcome!
+If you have feedback, or wish to contribute improvements, PRs are welcome!
 
 
 
