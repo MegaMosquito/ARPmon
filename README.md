@@ -1,11 +1,11 @@
 # ARPmon
-A REST service that monitors the local area network (LAN) using ARP probes.
+A REST service that monitors the local area network (LAN) using ARP Probes.
 
 ## Creating the REST Service:
 
 To start up the REST service, build the container and run it using the steps below.
 
-Before doing these steps you may optionally configure your environment with the network `CIDR` you are interested in scanning (see the Notes section below for more on that), and this scanning host's `IPV4` and `MAC` address. The container will use the values you see when you run `make chkvars` (either the ones you have set or the defaults that the Makefile discovers by examining your *default route*.
+Before doing these steps you may optionally configure your environment with the network `CIDR` you are interested in scanning (see the Notes section below for more on that), and this scanning host's `IPV4` and `MAC` address. The container will use the values you see when you run `make chkvars` (either the ones you have set, or the defaults that the Makefile discovers by examining your *default route*).
 
 You may also choose to alter the base URL for the REST service, the host port it binds to, and the number of goroutines the server will spawn.
 
